@@ -99,6 +99,28 @@ contract ReputationSystem is Ownable, ReentrancyGuard {
         _;
     }
     
+    /**
+     * @dev Add a DAO address with governance rights
+     * @param _dao DAO address to add
+     */
+    function addDAO(address _dao) external onlyOwner {
+        require(_dao != address(0), "Invalid DAO address");
+        require(!daos[_dao], "DAO already added");
+        daos[_dao] = true;
+        emit DAOAdded(_dao);
+    }
+
+    /**
+     * @dev Remove a DAO address
+     * @param _dao DAO address to remove
+     */
+    function removeDAO(address _dao) external onlyOwner {
+        require(_dao != address(0), "Invalid DAO address");
+        require(daos[_dao], "DAO not present");
+        daos[_dao] = false;
+        emit DAORemoved(_dao);
+    }
+    
     modifier onlyAdmin() {
         require(admins[msg.sender] || msg.sender == owner(), "Not an admin");
         _;
@@ -425,7 +447,6 @@ contract ReputationSystem is Ownable, ReentrancyGuard {
     /**
      * @dev Get proposal details
      * @param _proposalId Proposal ID
-     * @return Proposal data
      */
     function getProposal(uint256 _proposalId) 
         external 
