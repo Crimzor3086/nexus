@@ -1,0 +1,16 @@
+{
+  "name": "storage-hardhat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parity/hardhat-polkadot": "^0.1.9",
+    "solc": "^0.8.28"
+  }
+}
