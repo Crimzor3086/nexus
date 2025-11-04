@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # nexus
 =======
 # Nexus Platform
