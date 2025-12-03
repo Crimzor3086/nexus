@@ -2,6 +2,7 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/ThemeProvider";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -22,9 +23,11 @@ export const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center shadow-md">
-              <span className="text-primary-foreground font-bold text-xl">N</span>
-            </div>
+            <img 
+              src="/assets/nexus-logo.svg" 
+              alt="Nexus Logo" 
+              className="w-10 h-10"
+            />
             <span className="text-xl font-bold">Nexus</span>
           </div>
 
@@ -57,12 +60,16 @@ export const Navbar = () => {
             </Button>
 
             <div className="hidden md:flex gap-2">
-              <Button variant="ghost" size="default">
-                Sign In
-              </Button>
-              <Button variant="hero" size="default">
-                Get Started
-              </Button>
+              <Link to="/signin">
+                <Button variant="ghost" size="default">
+                  Sign In
+                </Button>
+              </Link>
+              <Link to="/signup">
+                <Button variant="hero" size="default">
+                  Get Started
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile menu button */}
@@ -98,12 +105,16 @@ export const Navbar = () => {
               </a>
             ))}
             <div className="pt-3 space-y-2">
-              <Button variant="ghost" size="default" className="w-full">
-                Sign In
-              </Button>
-              <Button variant="hero" size="default" className="w-full">
-                Get Started
-              </Button>
+              <Link to="/signin" className="block">
+                <Button variant="ghost" size="default" className="w-full">
+                  Sign In
+                </Button>
+              </Link>
+              <Link to="/signup" className="block">
+                <Button variant="hero" size="default" className="w-full">
+                  Get Started
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

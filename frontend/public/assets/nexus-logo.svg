@@ -1,0 +1,43 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#001a33"/>
+  
+  <!-- Top left gradient -->
+  <polygon points="0,0 200,0 0,200" fill="#0066ff" opacity="0.8"/>
+  
+  <!-- Bottom right gradient -->
+  <polygon points="512,512 312,512 512,312" fill="#ff6600" opacity="0.8"/>
+  
+  <!-- Center logo group -->
+  <g transform="translate(256, 256)">
+    <!-- Outer hexagon parts -->
+    <!-- Top left face (blue) -->
+    <polygon points="-60,-60 -30,-100 30,-100 60,-60 30,-20 -30,-20" fill="#0099ff" opacity="0.9"/>
+    
+    <!-- Top right face (orange) -->
+    <polygon points="30,-100 60,-60 100,-30 70,10 30,-20" fill="#ff9933" opacity="0.9"/>
+    
+    <!-- Bottom right face (orange-red) -->
+    <polygon points="70,10 100,-30 100,30 70,70" fill="#ff6600" opacity="0.9"/>
+    
+    <!-- Bottom face (blue-dark) -->
+    <polygon points="30,70 70,70 60,110 0,110" fill="#0055cc" opacity="0.9"/>
+    
+    <!-- Bottom left face (blue) -->
+    <polygon points="-30,70 30,70 0,110 -60,110" fill="#0088ff" opacity="0.9"/>
+    
+    <!-- Left face (blue-dark) -->
+    <polygon points="-70,10 -30,70 -60,110 -100,30" fill="#0066dd" opacity="0.9"/>
+    
+    <!-- Inner cube (dark) -->
+    <polygon points="-20,-20 20,-20 30,0 0,30 -10,10 -30,0" fill="#001a4d" opacity="0.95"/>
+    <polygon points="20,-20 30,0 20,20 0,10" fill="#003366" opacity="0.95"/>
+    <polygon points="-20,0 0,30 0,10 -10,10" fill="#004488" opacity="0.95"/>
+  </g>
+  
+  <!-- Orange circle top right -->
+  <circle cx="430" cy="50" r="35" fill="#ff6600" opacity="0.9"/>
+  
+  <!-- Orange circle bottom left -->
+  <circle cx="50" cy="430" r="35" fill="#ff9933" opacity="0.8"/>
+</svg>

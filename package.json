@@ -23,12 +23,12 @@
   "license": "MIT",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
-    "@polkadot/api": "^10.0.0",
+    "@polkadot/api": "^10.13.1",
     "@polkadot/types": "^10.0.0",
     "@polkadot/util": "^12.0.0",
     "@polkadot/util-crypto": "^12.0.0",
     "chai": "^4.3.7",
-    "ethers": "^6.8.0",
+    "ethers": "^6.15.0",
     "hardhat": "^2.19.0",
     "mocha": "^10.2.0"
   },
@@ -36,6 +36,22 @@
     "@openzeppelin/contracts": "4.9.6",
     "@polkadot/api-contract": "^10.0.0",
     "@polkadot/keyring": "^12.0.0",
-    "dotenv": "^16.3.1"
-  }
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.1"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Crimzor3086/nexus.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Crimzor3086/nexus/issues"
+  },
+  "homepage": "https://github.com/Crimzor3086/nexus#readme"
 }
