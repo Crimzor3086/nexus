@@ -32,9 +32,7 @@ export const Hero = () => {
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
             Your Identity,
             <br />
-            <span className="gradient-primary bg-clip-text text-transparent">
-              Your Control
-            </span>
+            Your Control
           </h1>
 
           {/* Description */}

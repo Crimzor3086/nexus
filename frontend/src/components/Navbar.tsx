@@ -1,14 +1,24 @@
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, Wallet, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/ThemeProvider";
+import { useWallet } from "@/hooks/useWallet";
 import { useState } from "react";
 
 export const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { address, isConnected, isConnecting, connectWallet, disconnectWallet, formatAddress, isMetaMaskInstalled } = useWallet();
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  const handleWalletClick = () => {
+    if (isConnected) {
+      disconnectWallet();
+    } else {
+      connectWallet();
+    }
   };
 
   const navLinks = [
@@ -56,13 +66,30 @@ export const Navbar = () => {
               )}
             </Button>
 
-            <div className="hidden md:flex gap-2">
-              <Button variant="ghost" size="default">
-                Sign In
-              </Button>
-              <Button variant="hero" size="default">
-                Get Started
-              </Button>
+            <div className="hidden md:flex">
+              {isConnected ? (
+                <Button
+                  variant="outline"
+                  size="default"
+                  onClick={handleWalletClick}
+                  className="gap-2"
+                >
+                  <Wallet className="h-4 w-4" />
+                  {formatAddress(address || "")}
+                  <LogOut className="h-4 w-4" />
+                </Button>
+              ) : (
+                <Button
+                  variant="hero"
+                  size="default"
+                  onClick={handleWalletClick}
+                  disabled={isConnecting || !isMetaMaskInstalled}
+                  className="gap-2"
+                >
+                  <Wallet className="h-4 w-4" />
+                  {isConnecting ? "Connecting..." : isMetaMaskInstalled ? "Connect Wallet" : "Install MetaMask"}
+                </Button>
+              )}
             </div>
 
             {/* Mobile menu button */}
@@ -97,13 +124,36 @@ export const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <div className="pt-3 space-y-2">
-              <Button variant="ghost" size="default" className="w-full">
-                Sign In
-              </Button>
-              <Button variant="hero" size="default" className="w-full">
-                Get Started
-              </Button>
+            <div className="pt-3">
+              {isConnected ? (
+                <Button
+                  variant="outline"
+                  size="default"
+                  onClick={() => {
+                    handleWalletClick();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full gap-2"
+                >
+                  <Wallet className="h-4 w-4" />
+                  {formatAddress(address || "")}
+                  <LogOut className="h-4 w-4" />
+                </Button>
+              ) : (
+                <Button
+                  variant="hero"
+                  size="default"
+                  onClick={() => {
+                    handleWalletClick();
+                    setMobileMenuOpen(false);
+                  }}
+                  disabled={isConnecting || !isMetaMaskInstalled}
+                  className="w-full gap-2"
+                >
+                  <Wallet className="h-4 w-4" />
+                  {isConnecting ? "Connecting..." : isMetaMaskInstalled ? "Connect Wallet" : "Install MetaMask"}
+                </Button>
+              )}
             </div>
           </div>
         </div>
