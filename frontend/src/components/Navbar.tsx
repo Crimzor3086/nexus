@@ -7,7 +7,17 @@ import { useState } from "react";
 export const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { address, isConnected, isConnecting, connectWallet, disconnectWallet, formatAddress, isMetaMaskInstalled } = useWallet();
+  const {
+    address,
+    isConnected,
+    isConnecting,
+    connectWallet,
+    disconnectWallet,
+    formatAddress,
+    isMetaMaskInstalled,
+    balance,
+    networkName,
+  } = useWallet();
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -75,7 +85,13 @@ export const Navbar = () => {
                   className="gap-2"
                 >
                   <Wallet className="h-4 w-4" />
-                  {formatAddress(address || "")}
+                  <div className="flex flex-col items-start leading-tight">
+                    <span>{formatAddress(address || "")}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {balance ? `${balance} ETH` : "Balance: ..."}
+                      {networkName ? ` · ${networkName}` : ""}
+                    </span>
+                  </div>
                   <LogOut className="h-4 w-4" />
                 </Button>
               ) : (
@@ -136,7 +152,13 @@ export const Navbar = () => {
                   className="w-full gap-2"
                 >
                   <Wallet className="h-4 w-4" />
-                  {formatAddress(address || "")}
+                  <div className="flex flex-col items-start leading-tight">
+                    <span>{formatAddress(address || "")}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {balance ? `${balance} ETH` : "Balance: ..."}
+                      {networkName ? ` · ${networkName}` : ""}
+                    </span>
+                  </div>
                   <LogOut className="h-4 w-4" />
                 </Button>
               ) : (
@@ -153,6 +175,11 @@ export const Navbar = () => {
                   <Wallet className="h-4 w-4" />
                   {isConnecting ? "Connecting..." : isMetaMaskInstalled ? "Connect Wallet" : "Install MetaMask"}
                 </Button>
+              )}
+              {isConnected && (
+                <p className="mt-2 text-xs text-muted-foreground">
+                  Credentials: 0 (coming soon)
+                </p>
               )}
             </div>
           </div>
