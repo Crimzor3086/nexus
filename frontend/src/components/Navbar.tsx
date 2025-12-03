@@ -89,8 +89,12 @@ export const Navbar = () => {
                     <span>{formatAddress(address || "")}</span>
                     <span className="text-xs text-muted-foreground">
                       {balance ? `${balance} ETH` : "Balance: ..."}
-                      {networkName ? ` · ${networkName}` : ""}
                     </span>
+                    {networkName && (
+                      <span className="text-xs text-muted-foreground">
+                        {networkName}
+                      </span>
+                    )}
                   </div>
                   <LogOut className="h-4 w-4" />
                 </Button>
@@ -156,8 +160,12 @@ export const Navbar = () => {
                     <span>{formatAddress(address || "")}</span>
                     <span className="text-xs text-muted-foreground">
                       {balance ? `${balance} ETH` : "Balance: ..."}
-                      {networkName ? ` · ${networkName}` : ""}
                     </span>
+                    {networkName && (
+                      <span className="text-xs text-muted-foreground">
+                        {networkName}
+                      </span>
+                    )}
                   </div>
                   <LogOut className="h-4 w-4" />
                 </Button>
@@ -175,11 +183,6 @@ export const Navbar = () => {
                   <Wallet className="h-4 w-4" />
                   {isConnecting ? "Connecting..." : isMetaMaskInstalled ? "Connect Wallet" : "Install MetaMask"}
                 </Button>
-              )}
-              {isConnected && (
-                <p className="mt-2 text-xs text-muted-foreground">
-                  Credentials: 0 (coming soon)
-                </p>
               )}
             </div>
           </div>

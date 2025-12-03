@@ -31,13 +31,17 @@ declare global {
 const CHAIN_NAMES: Record<string, string> = {
   "0x1": "Ethereum Mainnet",
   "0x5": "Goerli",
+  "0xaa36a7": "Sepolia",
   "0x89": "Polygon",
   "0x13881": "Mumbai",
   "0xa": "Optimism",
   "0xa4b1": "Arbitrum One",
+  "0x66eee": "Arbitrum Sepolia",
   "0x2105": "Base",
+  "0x14a34": "Base Sepolia",
   "0x38": "BSC",
   "0x61": "BSC Testnet",
+  "0x523": "Custom Network (1315)",
 };
 
 export const useWallet = () => {
@@ -59,7 +63,19 @@ export const useWallet = () => {
   // Get network name from chain ID
   const getNetworkName = useCallback((chainId: string | null): string | null => {
     if (!chainId) return null;
-    return CHAIN_NAMES[chainId] || `Chain ${chainId}`;
+    
+    // Check if we have a known name
+    if (CHAIN_NAMES[chainId]) {
+      return CHAIN_NAMES[chainId];
+    }
+    
+    // For unknown chains, convert hex to decimal for better readability
+    try {
+      const decimalId = parseInt(chainId, 16);
+      return `Custom Network (${decimalId})`;
+    } catch {
+      return `Chain ${chainId}`;
+    }
   }, []);
 
   // Get current chain ID
