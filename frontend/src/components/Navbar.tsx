@@ -1,15 +1,35 @@
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, Wallet, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/ThemeProvider";
+import { useWallet } from "@/hooks/useWallet";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const {
+    address,
+    isConnected,
+    isConnecting,
+    connectWallet,
+    disconnectWallet,
+    formatAddress,
+    isMetaMaskInstalled,
+    balance,
+    networkName,
+  } = useWallet();
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  const handleWalletClick = () => {
+    if (isConnected) {
+      disconnectWallet();
+    } else {
+      connectWallet();
+    }
   };
 
   const navLinks = [
@@ -59,17 +79,41 @@ export const Navbar = () => {
               )}
             </Button>
 
-            <div className="hidden md:flex gap-2">
-              <Link to="/signin">
-                <Button variant="ghost" size="default">
-                  Sign In
+<<<<<<< HEAD
+            <div className="hidden md:flex">
+              {isConnected ? (
+                <Button
+                  variant="outline"
+                  size="default"
+                  onClick={handleWalletClick}
+                  className="gap-2"
+                >
+                  <Wallet className="h-4 w-4" />
+                  <div className="flex flex-col items-start leading-tight">
+                    <span>{formatAddress(address || "")}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {balance ? `${balance} ETH` : "Balance: ..."}
+                    </span>
+                    {networkName && (
+                      <span className="text-xs text-muted-foreground">
+                        {networkName}
+                      </span>
+                    )}
+                  </div>
+                  <LogOut className="h-4 w-4" />
                 </Button>
-              </Link>
-              <Link to="/signup">
-                <Button variant="hero" size="default">
-                  Get Started
+              ) : (
+                <Button
+                  variant="hero"
+                  size="default"
+                  onClick={handleWalletClick}
+                  disabled={isConnecting || !isMetaMaskInstalled}
+                  className="gap-2"
+                >
+                  <Wallet className="h-4 w-4" />
+                  {isConnecting ? "Connecting..." : isMetaMaskInstalled ? "Connect Wallet" : "Install MetaMask"}
                 </Button>
-              </Link>
+              )}
             </div>
 
             {/* Mobile menu button */}
@@ -103,18 +147,47 @@ export const Navbar = () => {
               >
                 {link.name}
               </a>
-            ))}
-            <div className="pt-3 space-y-2">
-              <Link to="/signin" className="block">
-                <Button variant="ghost" size="default" className="w-full">
-                  Sign In
+            )}
+            <div className="pt-3">
+              {isConnected ? (
+                <Button
+                  variant="outline"
+                  size="default"
+                  onClick={() => {
+                    handleWalletClick();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full gap-2"
+                >
+                  <Wallet className="h-4 w-4" />
+                  <div className="flex flex-col items-start leading-tight">
+                    <span>{formatAddress(address || "")}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {balance ? `${balance} ETH` : "Balance: ..."}
+                    </span>
+                    {networkName && (
+                      <span className="text-xs text-muted-foreground">
+                        {networkName}
+                      </span>
+                    )}
+                  </div>
+                  <LogOut className="h-4 w-4" />
                 </Button>
-              </Link>
-              <Link to="/signup" className="block">
-                <Button variant="hero" size="default" className="w-full">
-                  Get Started
+              ) : (
+                <Button
+                  variant="hero"
+                  size="default"
+                  onClick={() => {
+                    handleWalletClick();
+                    setMobileMenuOpen(false);
+                  }}
+                  disabled={isConnecting || !isMetaMaskInstalled}
+                  className="w-full gap-2"
+                >
+                  <Wallet className="h-4 w-4" />
+                  {isConnecting ? "Connecting..." : isMetaMaskInstalled ? "Connect Wallet" : "Install MetaMask"}
                 </Button>
-              </Link>
+              )}
             </div>
           </div>
         </div>

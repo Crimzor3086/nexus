@@ -24,9 +24,7 @@ export const Benefits = () => {
               <h2 className="text-4xl sm:text-5xl font-bold">
                 Why Choose
                 <br />
-                <span className="gradient-accent bg-clip-text text-transparent">
-                  Nexus Platform
-                </span>
+                Nexus Platform
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Experience the next generation of digital identity management. 
@@ -55,7 +53,7 @@ export const Benefits = () => {
             {/* Right side - Stats */}
             <div className="grid grid-cols-2 gap-6">
               <div className="p-8 rounded-2xl bg-card border border-border space-y-2">
-                <div className="text-4xl font-bold gradient-primary bg-clip-text text-transparent">
+                <div className="text-4xl font-bold">
                   10K+
                 </div>
                 <div className="text-sm text-muted-foreground">
@@ -71,7 +69,7 @@ export const Benefits = () => {
                 </div>
               </div>
               <div className="p-8 rounded-2xl bg-card border border-border space-y-2">
-                <div className="text-4xl font-bold gradient-primary bg-clip-text text-transparent">
+                <div className="text-4xl font-bold">
                   50M+
                 </div>
                 <div className="text-sm text-muted-foreground">
